@@ -52,6 +52,7 @@ class apt::update {
   }
   exec { 'apt_update':
     command     => "${::apt::provider} update",
+    cwd         => '/',
     logoutput   => 'on_failure',
     refreshonly => $_refresh,
     timeout     => $::apt::_update['timeout'],

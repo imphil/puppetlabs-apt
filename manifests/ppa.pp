@@ -49,6 +49,7 @@ define apt::ppa(
       environment => $_proxy_env,
       command     => "/usr/bin/add-apt-repository ${options} ${name}",
       unless      => "/usr/bin/test -s ${::apt::sources_list_d}/${sources_list_d_filename}",
+      cwd         => '/',
       user        => 'root',
       logoutput   => 'on_failure',
       notify      => Class['apt::update'],

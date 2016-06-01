@@ -41,6 +41,7 @@ define apt::source(
     warning('$required_packages is deprecated and will be removed in the next major release, please use package resources instead.')
     exec { "Required packages: '${required_packages}' for ${name}":
       command     => "${::apt::params::provider} -y install ${required_packages}",
+      cwd         => '/',
       logoutput   => 'on_failure',
       refreshonly => true,
       tries       => 3,
